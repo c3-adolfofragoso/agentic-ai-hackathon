@@ -44,3 +44,8 @@ Local: http://localhost:5173
 # Important resources
 
 * backend studio/app https://hack2025.c3-e.com/c3ai/studio
+
+
+# Making contributions to the repo: 
+
+clone and commit your changes. Let's push everything to 'main' branch
