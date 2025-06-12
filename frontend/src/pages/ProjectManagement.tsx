@@ -147,8 +147,8 @@ const projectProgressData: ChartData<'line'> = {
     {
       label: 'Average Project Progress',
       data: [30, 45, 57, 68, 75, 85],
-      borderColor: '#3B82F6',
-      backgroundColor: 'rgba(59, 130, 246, 0.1)',
+      borderColor: '#2563EB',
+      backgroundColor: 'rgba(37, 99, 235, 0.1)',
       fill: true,
       tension: 0.4
     }
@@ -167,35 +167,6 @@ const teamSizeData: ChartData<'line'> = {
       tension: 0.4
     }
   ]
-};
-
-const chartOptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      labels: {
-        color: '#9CA3AF'
-      }
-    }
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: '#9CA3AF'
-      },
-      grid: {
-        color: '#374151'
-      }
-    },
-    y: {
-      ticks: {
-        color: '#9CA3AF'
-      },
-      grid: {
-        color: '#374151'
-      }
-    }
-  }
 };
 
 export function ProjectManagement() {
@@ -221,61 +192,53 @@ export function ProjectManagement() {
   );
 
   return (
-    <div className="min-h-screen bg-dark-primary text-white">
-      {/* Header */}
-      <div className="border-b border-dark-border bg-dark-secondary">
-        <div className="px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-white">Project Management</h1>
-              <p className="text-gray-400 text-sm">Manage and track all engineering projects</p>
-            </div>
-            <button
-              onClick={() => setIsNewProjectModalOpen(true)}
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 transition-colors"
-            >
-              <Plus className="h-5 w-5 mr-2" />
-              New Project
-            </button>
-          </div>
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl font-bold text-gray-900">Project Management</h1>
+          <button
+            onClick={() => setIsNewProjectModalOpen(true)}
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90"
+          >
+            <Plus className="h-5 w-5 mr-2" />
+            New Project
+          </button>
         </div>
-      </div>
 
-      <div className="p-6">
         {/* KPIs Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-dark-secondary border border-dark-border rounded-xl p-6">
+          <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Average Progress</p>
-                <p className="text-3xl font-bold text-white">{averageProgress}%</p>
+                <p className="text-sm font-medium text-gray-500">Average Progress</p>
+                <p className="text-2xl font-semibold text-gray-900">{averageProgress}%</p>
               </div>
-              <div className="p-3 bg-primary/20 rounded-lg">
+              <div className="p-3 bg-blue-100 rounded-full">
                 <TrendingUp className="h-6 w-6 text-primary" />
               </div>
             </div>
           </div>
 
-          <div className="bg-dark-secondary border border-dark-border rounded-xl p-6">
+          <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Overdue Projects</p>
-                <p className="text-3xl font-bold text-error">{overdueProjects.length}</p>
+                <p className="text-sm font-medium text-gray-500">Overdue Projects</p>
+                <p className="text-2xl font-semibold text-red-600">{overdueProjects.length}</p>
               </div>
-              <div className="p-3 bg-error/20 rounded-lg">
-                <AlertTriangle className="h-6 w-6 text-error" />
+              <div className="p-3 bg-red-100 rounded-full">
+                <AlertTriangle className="h-6 w-6 text-red-600" />
               </div>
             </div>
           </div>
 
-          <div className="bg-dark-secondary border border-dark-border rounded-xl p-6">
+          <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-400">Active Projects</p>
-                <p className="text-3xl font-bold text-secondary">{mockProjects.length}</p>
+                <p className="text-sm font-medium text-gray-500">Active Projects</p>
+                <p className="text-2xl font-semibold text-green-600">{mockProjects.length}</p>
               </div>
-              <div className="p-3 bg-secondary/20 rounded-lg">
-                <CheckCircle2 className="h-6 w-6 text-secondary" />
+              <div className="p-3 bg-green-100 rounded-full">
+                <CheckCircle2 className="h-6 w-6 text-green-600" />
               </div>
             </div>
           </div>
@@ -283,64 +246,66 @@ export function ProjectManagement() {
 
         {/* Charts Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-dark-secondary border border-dark-border rounded-xl p-6">
-            <h3 className="text-lg font-medium text-white mb-4">Project Progress Trend</h3>
-            <Line data={projectProgressData} options={chartOptions} />
+          <div className="bg-white rounded-lg shadow p-6">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Project Progress Trend</h3>
+            <Line data={projectProgressData} options={{ responsive: true }} />
           </div>
 
-          <div className="bg-dark-secondary border border-dark-border rounded-xl p-6">
-            <h3 className="text-lg font-medium text-white mb-4">Team Size Distribution</h3>
-            <Line data={teamSizeData} options={chartOptions} />
+          <div className="bg-white rounded-lg shadow p-6">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Team Size Distribution</h3>
+            <Line data={teamSizeData} options={{ responsive: true }} />
           </div>
         </div>
 
         {/* Upcoming Deadlines */}
-        <div className="bg-dark-secondary border border-dark-border rounded-xl mb-8">
-          <div className="px-6 py-4 border-b border-dark-border">
-            <h2 className="text-lg font-medium text-white">Upcoming Deadlines</h2>
+        <div className="bg-white rounded-lg shadow mb-8">
+          <div className="px-4 py-5 sm:px-6">
+            <h2 className="text-lg font-medium text-gray-900">Upcoming Deadlines</h2>
           </div>
-          <div className="divide-y divide-dark-border">
-            {upcomingProjects.slice(0, 3).map((project) => (
-              <div key={project.id} className="px-6 py-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Link
-                      to={`/projects/${project.id}`}
-                      className="text-sm font-medium text-primary hover:text-primary/80"
-                    >
-                      {project.name}
-                    </Link>
-                    <p className="text-sm text-gray-400">{project.description}</p>
+          <div className="border-t border-gray-200">
+            <ul className="divide-y divide-gray-200">
+              {upcomingProjects.slice(0, 3).map((project) => (
+                <li key={project.id} className="px-4 py-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <Link
+                        to={`/projects/${project.id}`}
+                        className="text-sm font-medium text-primary hover:text-primary/80"
+                      >
+                        {project.name}
+                      </Link>
+                      <p className="text-sm text-gray-500">{project.description}</p>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Calendar className="h-4 w-4 mr-1" />
+                      {new Date(project.deadline).toLocaleDateString()}
+                    </div>
                   </div>
-                  <div className="flex items-center text-sm text-gray-400">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    {new Date(project.deadline).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
-            ))}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
         {/* Active Projects Table */}
-        <div className="bg-dark-secondary border border-dark-border rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-dark-border">
-            <h2 className="text-lg font-medium text-white">Active Projects</h2>
+        <div className="bg-white shadow rounded-lg overflow-hidden">
+          <div className="px-4 py-5 sm:px-6">
+            <h2 className="text-lg font-medium text-gray-900">Active Projects</h2>
           </div>
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-dark-border">
-              <thead className="bg-dark-tertiary">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Project</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Deadline</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Team</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Progress</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Actions</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Project</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deadline</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-dark-border">
+              <tbody className="bg-white divide-y divide-gray-200">
                 {mockProjects.map((project) => (
-                  <tr key={project.id} className="hover:bg-dark-tertiary transition-colors">
+                  <tr key={project.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex flex-col">
                         <Link 
@@ -349,33 +314,33 @@ export function ProjectManagement() {
                         >
                           {project.name}
                         </Link>
-                        <div className="text-sm text-gray-400">{project.description}</div>
+                        <div className="text-sm text-gray-500">{project.description}</div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center text-sm text-gray-300">
+                      <div className="flex items-center text-sm text-gray-500">
                         <Calendar className="h-4 w-4 mr-2" />
                         {new Date(project.deadline).toLocaleDateString()}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center text-sm text-gray-300">
+                      <div className="flex items-center text-sm text-gray-500">
                         <Users className="h-4 w-4 mr-2" />
                         {project.teamSize} members
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="flex-1 h-2 bg-dark-tertiary rounded-full">
+                        <div className="flex-1 h-2 bg-gray-200 rounded-full">
                           <div
                             className="h-2 bg-primary rounded-full"
                             style={{ width: `${project.progress}%` }}
                           />
                         </div>
-                        <span className="ml-2 text-sm text-gray-300">{project.progress}%</span>
+                        <span className="ml-2 text-sm text-gray-500">{project.progress}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       <button className="text-primary hover:text-primary/80 mr-4">
                         <Edit2 className="h-4 w-4" />
                       </button>
@@ -392,38 +357,38 @@ export function ProjectManagement() {
 
         {/* New Project Modal */}
         {isNewProjectModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-            <div className="bg-dark-secondary border border-dark-border rounded-xl p-8 max-w-2xl w-full mx-4">
-              <h3 className="text-lg font-medium text-white mb-6">Create New Project</h3>
-              <div className="space-y-6">
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+            <div className="bg-white rounded-lg p-8 max-w-2xl w-full">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Create New Project</h3>
+              <div className="space-y-4">
                 <div>
-                  <label htmlFor="projectName" className="block text-sm font-medium text-gray-300 mb-2">Project Name</label>
+                  <label htmlFor="projectName" className="block text-sm font-medium text-gray-700">Project Name</label>
                   <input
                     type="text"
                     id="projectName"
-                    className="w-full rounded-lg border border-dark-border bg-dark-tertiary text-white px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                   />
                 </div>
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-300 mb-2">Description</label>
+                  <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
                   <textarea
                     id="description"
                     rows={4}
-                    className="w-full rounded-lg border border-dark-border bg-dark-tertiary text-white px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                   />
                 </div>
                 <div>
-                  <label htmlFor="deadline" className="block text-sm font-medium text-gray-300 mb-2">Deadline</label>
+                  <label htmlFor="deadline" className="block text-sm font-medium text-gray-700">Deadline</label>
                   <input
                     type="date"
                     id="deadline"
-                    className="w-full rounded-lg border border-dark-border bg-dark-tertiary text-white px-3 py-2 focus:border-primary focus:ring-1 focus:ring-primary"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Document Upload</label>
-                  <div className="border-2 border-dashed border-dark-border rounded-lg p-6 text-center">
-                    <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700">Document Upload</label>
+                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div className="space-y-1 text-center">
                       <svg
                         className="mx-auto h-12 w-12 text-gray-400"
                         stroke="currentColor"
@@ -438,10 +403,10 @@ export function ProjectManagement() {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <div className="text-gray-400">
+                      <div className="flex text-sm text-gray-600">
                         <label
                           htmlFor="file-upload"
-                          className="cursor-pointer text-primary hover:text-primary/80"
+                          className="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-primary/90"
                         >
                           <span>Upload a file</span>
                           <input
@@ -452,13 +417,13 @@ export function ProjectManagement() {
                             onChange={handleFileChange}
                           />
                         </label>
-                        <span> or drag and drop</span>
+                        <p className="pl-1">or drag and drop</p>
                       </div>
                       <p className="text-xs text-gray-500">PDF, DOC up to 10MB</p>
                     </div>
                   </div>
                   {selectedFile && (
-                    <p className="mt-2 text-sm text-gray-400">
+                    <p className="mt-2 text-sm text-gray-500">
                       Selected file: {selectedFile.name}
                     </p>
                   )}
@@ -466,11 +431,11 @@ export function ProjectManagement() {
                 <div className="flex justify-end gap-3">
                   <button
                     onClick={() => setIsNewProjectModalOpen(false)}
-                    className="px-4 py-2 border border-dark-border rounded-lg text-sm font-medium text-gray-300 bg-dark-tertiary hover:bg-dark-border transition-colors"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                   >
                     Cancel
                   </button>
-                  <button className="px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 transition-colors">
+                  <button className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90">
                     Create Project
                   </button>
                 </div>

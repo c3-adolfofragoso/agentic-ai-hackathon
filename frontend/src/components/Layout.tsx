@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Users, Briefcase, User, BarChart3, Bell, Settings } from 'lucide-react';
+import { Users, Briefcase, User } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,81 +8,49 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex h-screen bg-dark-primary text-white">
+    <div className="flex h-screen bg-gray-50">
       {/* Vertical Navigation */}
-      <div className="w-16 bg-dark-secondary border-r border-dark-border flex flex-col items-center py-4">
-        {/* Logo */}
-        <div className="mb-8">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <BarChart3 className="h-5 w-5 text-white" />
-          </div>
+      <div className="w-64 bg-white shadow-sm">
+        <div className="h-16 flex items-center justify-center border-b border-gray-200">
+          <a href='/'>
+            <span className="text-2xl font-bold text-primary">ResourceHub</span>
+          </a>
         </div>
-        
-        {/* Navigation Icons */}
-        <nav className="flex flex-col space-y-4">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `p-3 rounded-lg transition-colors ${
-                isActive 
-                  ? 'bg-primary text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-dark-tertiary'
-              }`
-            }
-            title="Dashboard"
-          >
-            <BarChart3 className="h-5 w-5" />
-          </NavLink>
+        <nav className="mt-6">
           <NavLink
             to="/profile"
             className={({ isActive }) =>
-              `p-3 rounded-lg transition-colors ${
-                isActive 
-                  ? 'bg-primary text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-dark-tertiary'
+              `flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary ${
+                isActive ? 'text-primary bg-primary/5 border-r-4 border-primary' : ''
               }`
             }
-            title="Profile"
           >
-            <User className="h-5 w-5" />
+            <User className="h-5 w-5 mr-3" />
+            Profile
           </NavLink>
           <NavLink
             to="/projects"
             className={({ isActive }) =>
-              `p-3 rounded-lg transition-colors ${
-                isActive 
-                  ? 'bg-primary text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-dark-tertiary'
+              `flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary ${
+                isActive ? 'text-primary bg-primary/5 border-r-4 border-primary' : ''
               }`
             }
-            title="Projects"
           >
-            <Briefcase className="h-5 w-5" />
+            <Briefcase className="h-5 w-5 mr-3" />
+            Projects
           </NavLink>
           <NavLink
             to="/engineers"
             className={({ isActive }) =>
-              `p-3 rounded-lg transition-colors ${
-                isActive 
-                  ? 'bg-primary text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-dark-tertiary'
+              `flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary ${
+                isActive ? 'text-primary bg-primary/5 border-r-4 border-primary' : ''
               }`
             }
-            title="Engineers"
           >
-            <Users className="h-5 w-5" />
+            <Users className="h-5 w-5 mr-3" />
+            Engineers
           </NavLink>
         </nav>
-
-        {/* Bottom Icons */}
-        <div className="mt-auto flex flex-col space-y-4">
-          <button className="p-3 rounded-lg text-gray-400 hover:text-white hover:bg-dark-tertiary transition-colors">
-            <Bell className="h-5 w-5" />
-          </button>
-          <button className="p-3 rounded-lg text-gray-400 hover:text-white hover:bg-dark-tertiary transition-colors">
-            <Settings className="h-5 w-5" />
-          </button>
-        </div>
       </div>
 
       {/* Main Content */}

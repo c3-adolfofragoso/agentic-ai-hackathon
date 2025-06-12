@@ -1,6 +1,5 @@
 import React from 'react';
 import { clsx } from 'clsx';
-import { TrendingUp, TrendingDown } from 'lucide-react';
 
 interface DashboardCardProps {
   title: string;
@@ -15,31 +14,24 @@ interface DashboardCardProps {
 
 export function DashboardCard({ title, value, icon, trend, className }: DashboardCardProps) {
   return (
-    <div className={clsx('bg-dark-secondary border border-dark-border rounded-xl p-6 hover:bg-dark-tertiary transition-colors', className)}>
-      <div className="flex items-center justify-between mb-4">
-        <div className="p-2 bg-dark-tertiary rounded-lg">
-          {icon}
+    <div className={clsx('bg-white rounded-lg shadow-sm p-6', className)}>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <div className="p-2 bg-[#2563EB]/10 rounded-lg">
+            {icon}
+          </div>
+          <h3 className="ml-4 text-lg font-medium text-gray-900">{title}</h3>
         </div>
         {trend && (
-          <div className={clsx(
-            'flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-medium',
-            trend.isPositive 
-              ? 'bg-secondary/20 text-secondary' 
-              : 'bg-error/20 text-error'
+          <span className={clsx(
+            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium',
+            trend.isPositive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
           )}>
-            {trend.isPositive ? (
-              <TrendingUp className="h-3 w-3" />
-            ) : (
-              <TrendingDown className="h-3 w-3" />
-            )}
-            <span>{Math.abs(trend.value)}%</span>
-          </div>
+            {trend.isPositive ? '+' : '-'}{Math.abs(trend.value)}%
+          </span>
         )}
       </div>
-      <div>
-        <p className="text-3xl font-bold text-white mb-1">{value}</p>
-        <p className="text-sm text-gray-400">{title}</p>
-      </div>
+      <p className="mt-4 text-3xl font-semibold text-gray-900">{value}</p>
     </div>
   );
 }
