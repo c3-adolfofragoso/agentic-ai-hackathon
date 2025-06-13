@@ -1,0 +1,17 @@
+{
+    "name": "testapphack",
+    "description": "Package containing app backend",
+    "author": "Chipmunks",
+    "dependencies": {
+      "baseToolkit": "12.0"
+    },
+    "eslintConfig": {
+      "extends": ["plugin:@c3/c3-base", "plugin:@c3/typescript"],
+      "plugins": ["@c3"],
+      "parserOptions": {
+        "sourceType": "module"
+      }
+    },
+    "version": "1.0"
+  }
+  
