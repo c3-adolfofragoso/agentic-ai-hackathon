@@ -305,3 +305,39 @@ def featureExtractor(cls, spec):
     )
 
     return resp.choices[0].message.content
+
+def _ticket_to_text(ticket):
+    return f"{ticket.name}"
+
+def similarityScoreCalculator(cls, tickets):
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    from sklearn.metrics.pairwise import cosine_similarity
+    
+    engineers = c3.Engineer.fetch({"include": 'historicalContributions.name'}).objs
+    dev_scores = {}
+    relationships = []
+
+    for dev in engineers:
+        corpus_hist = [t.title for t in dev.historicalContributions]
+        corpus_nuevos = [t.title for t in tickets]
+        full_corpus = corpus_hist + corpus_nuevos
+
+        if not corpus_hist:
+            dev_scores[dev.nombre] = [(ticket, 0.0) for ticket in tickets]
+            continue
+        vectorizer = TfidfVectorizer(stop_words='english')
+        tfidf_matrix = vectorizer.fit_transform(full_corpus)
+
+        hist_matrix = tfidf_matrix[:len(corpus_hist)]
+        nuevos_matrix = tfidf_matrix[len(corpus_hist):]
+
+        hist_avg = hist_matrix.mean(axis=0)
+        similarities = cosine_similarity(hist_avg, nuevos_matrix)[0]
+
+        ticket_scores = list(zip(tickets, similarities.tolist()))
+        ticket_scores.sort(key=lambda x: x[1], reverse=True)
+
+        dev_scores[dev.nombre] = ticket_scores
+
+    return dev_scores
+

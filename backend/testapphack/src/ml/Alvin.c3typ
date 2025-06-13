@@ -5,5 +5,5 @@ type Alvin {
 
   featureExtractor: function(spec: string): string py-simon;
 
-  similarityScoreCalculator: function(tickets: [Ticket]): json;
+  similarityScoreCalculator: function(tickets: json): json py-simon;
 }
