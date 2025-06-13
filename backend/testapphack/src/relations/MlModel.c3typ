@@ -1,0 +1,6 @@
+type MlModel {
+
+  featureExtractor: function(spec: string): [Ticket];
+
+  similarityScoreCalculator: function(tickets: [Ticket]): json;
+}

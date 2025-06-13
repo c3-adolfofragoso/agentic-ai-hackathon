@@ -1,0 +1,4 @@
+entity type Engineer {
+
+  historicalContributions: [Ticket] (engineer);
+}

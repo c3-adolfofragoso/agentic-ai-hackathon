@@ -1,0 +1,8 @@
+type FeatureToEngineerRelation {
+  
+  from: Ticket;
+
+  to: Engineer;
+
+  similarityScore: double;
+}

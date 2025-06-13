@@ -1,0 +1,14 @@
+entity type Ticket {
+
+  engineer: Engineer;
+
+  project: Project;
+
+  jiraLink: string;
+
+  status: string enum StatusType;
+
+  priority: double;
+
+  project: Project;
+}

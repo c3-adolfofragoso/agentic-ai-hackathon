@@ -1,0 +1,14 @@
+enum type StatusType {
+
+  OPEN = "Open",
+
+  DONE = "Done",
+
+  CLOSED = "Closed",
+
+  IN_PROGRESS = "In Progress",
+
+  IN_REVIEW = "In Review",
+
+  PENDING = "Pending",
+}
