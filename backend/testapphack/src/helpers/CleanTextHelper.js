@@ -3,8 +3,12 @@ function cleanTextToJson(input) {
 
   const results = preResults.map((text) => {
     // Regular expression to match the Title and Description
-    const regex = /\*\*Title\*\*:\s*(.*?)\s*\*\*Description\*\*:\s*(.*)/s;
-    const match = text.match(regex);
+    try{
+      const regex = /\*\*Title\*\*:\s*(.*?)\s*\*\*Description\*\*:\s*(.*)/s;
+      var match = text.match(regex);
+    }catch(err){
+      match = null;
+    }
 
     // If the regex matches, extract the title and description
     if(match) {

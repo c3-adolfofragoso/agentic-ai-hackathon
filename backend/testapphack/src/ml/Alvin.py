@@ -284,7 +284,7 @@ def featureExtractor(cls, spec):
     MODEL_NAME   = "/models/checkpoint-11871"
 
     GENERATION_ARGS = {
-        "temperature": 0.3,
+        "temperature": 0.1,
         "top_p": 0.95,
         "max_tokens": 2048,
         "extra_body": {
@@ -386,4 +386,4 @@ def similarityScoreCalculator(cls, tickets):
         'name': 'Project-'+ str(project_id),
     }).upsert()
 
-    return 'Project-'+ str(project_id)
+    return str(project_id)
