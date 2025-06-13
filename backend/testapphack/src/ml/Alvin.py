@@ -21,8 +21,12 @@ def _training(spec):
 
     Also we need the the tickets in this format
 
+    ---
+
     Title: <One Line String>
     Description: <One Line String>
+    
+    ---
     
     The title and the description should be a single line string, no new lines or tabs.
     """
@@ -44,18 +48,28 @@ def _training(spec):
     calculator_result = """
     Here is the necessary tickets to build this application:
 
+    ---
+
     Title: Create Calculation class
     Description: A class that represents a calculation stream, which needs to store all the history
     for the current operation, and have a variable that represents the value
 
+    ---
+
     Title: Create operation interfaces
     Description: Create an interface that can support multiple operations and receive a calculation
+
+    ---
 
     Title: Create a button UI
     Description: Create a button component using react to be modular with capability to change content and color
 
+    ---
+
     Title: Create UI layout for the calculator
     Description: Create all the layout for the UI structure
+
+    ---
 
     Title: Create PostgresSQL tables to store the users
     Description: Creates tables dedicated to users
@@ -73,23 +87,37 @@ def _training(spec):
     weather_result = """
     Here are the necessary tickets to build this application:
 
+    ---
+
     Title: Integrate OpenWeatherMap API
     Description: Set up API calls to fetch current and forecast weather data.
+
+    ---
 
     Title: Cache API responses
     Description: Store weather data in Cassandra for rate-limited API fallback. 
 
+    ---
+
     Title: Create weather display component
     Description: Design a React component to show temperature, humidity, and wind speed.
+
+    ---
 
     Title: Implement city search functionality  
     Description: Add a search bar with autocomplete in PostgresSQL and API request on submit.
 
+    ---
+
     Title: Build 5-day forecast UI.
     Description: Display forecast data in a horizontal card layout.
 
+    ---
+
     Title: Add unit toggle (Celsius/Fahrenheit)
     Description: Allow users to switch between temperature units.
+
+    ---
 
     Title: Error handling for API failures
     Description: Show user-friendly messages for invalid cities or network issues.
@@ -108,20 +136,32 @@ def _training(spec):
     ecommerce_result = """
     Here are the necessary tickets to build this application:
 
+    ---
+
     Title: Design product image gallery
     Description: Implement a swipeable gallery with thumbnails and zoom. Also, store high-res images in Cassandra and thumbnails in PostgresSQL.
+
+    ---
 
     Title: Add variant selection UI
     Description: Allow users to pick size/color using React components with visual feedback.
 
+    ---
+
     Title: Implement cart functionality
     Description: Add items to cart via AJAX and show a mini-cart preview.
+
+    ---
 
     Title: Build review section
     Description: Display and submit user reviews with star ratings. Display reviews from PostgreSQL (Prisma schema with ratings). Submit reviews via tRPC with TypeScript validation.
 
+    ---
+
     Title: Dynamic price updates
     Description: Adjust price based on selected variants.
+
+    ---
 
     Title: Mobile-First Layout with Tailwind
     Description: Responsive design using Tailwind’s breakpoints. Test on Device Simulator.
@@ -139,20 +179,32 @@ def _training(spec):
     todo_result = """  
     Here are the necessary tickets to build this application:
 
+    ---
+
     Title: Implement Task model
     Description: Define a Task schema in PostgresSQL with properties (title, description, due date, completion status).
+
+    ---
 
     Title: Create CRUD operations for tasks
     Description: Build tRPC procedures to implement functions to add, edit, delete, and retrieve tasks.
 
+    ---
+
     Title: Design task list UI
     Description: Build a responsive task grid with filtering and sorting options.
+
+    ---
 
     Title: Add real-time sync
     Description: Use Cassandra to store and replicate task history for audit logs.
 
+    ---
+
     Title: Add task creation form
     Description: Create a form with validation for adding/editing tasks.
+
+    ---
 
     Title: Optimize PostgreSQL queries for filtering  
     Description: Index columns (status, dueDate) for faster sorting/filtering.
@@ -170,20 +222,32 @@ def _training(spec):
     fitness_result = """
     Here are the necessary tickets to build this application:
 
+    ---
+
     Title: Implement workout logging
     Description: Create forms to log exercise type, duration, and intensity.
+
+    ---
 
     Title: Design progress dashboard
     Description: Build charts to display trends in workouts and goal completion. Fetch metrics via tRPC.
 
+    ---
+
     Title: Add goal-setting feature
     Description: Let users set and track weekly/monthly fitness targets.
+
+    ---
 
     Title: Create achievement system
     Description: Award badges for milestones (e.g., "10K Steps Daily").
 
+    ---
+
     Title: Sync with wearable APIs
     Description: Integrate with Fitbit/Apple Health for automatic data import.
+
+    ---
 
     Title: Dark/light mode toggle
     Description: Add UI theme switching for user preference.
@@ -210,10 +274,7 @@ def _training(spec):
     
     return messages
 
-def featureExtractor(cls, spec):
-    # install once
-    # pip install "openai>=1.0.0"
-
+def meteleCoco(cls, spec):
     import os
     from openai import OpenAI
     
@@ -244,11 +305,3 @@ def featureExtractor(cls, spec):
     )
 
     return resp.choices[0].message.content;
-
-
-def prueba(cls):
-    from typing import List, Dict, Tuple
-    #from dataclasses import dataclass
-    #from sentence_transformers import SentenceTransformer, util
-    
-    return "Hola, soy una prueba de Alvin.py"
