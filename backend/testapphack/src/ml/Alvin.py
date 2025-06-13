@@ -274,7 +274,7 @@ def _training(spec):
     
     return messages
 
-def meteleCoco(cls, spec):
+def featureExtractor(cls, spec):
     import os
     from openai import OpenAI
     
@@ -304,4 +304,4 @@ def meteleCoco(cls, spec):
         messages=_training(spec)         
     )
 
-    return resp.choices[0].message.content;
+    return resp.choices[0].message.content
