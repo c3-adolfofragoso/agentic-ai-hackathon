@@ -1,0 +1,8 @@
+
+type CanonicalTicket mixes Canonical<CanonicalTicket> {
+  id: string
+  parent: string
+  summary: string
+  assignee: string
+  status: string
+}

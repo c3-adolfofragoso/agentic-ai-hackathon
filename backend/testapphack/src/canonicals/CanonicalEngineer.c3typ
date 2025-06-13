@@ -1,6 +1,5 @@
 
 type CanonicalEngineer mixes Canonical<CanonicalEngineer> {
+  engineer: string
   name: string
-
-  project: string
 }

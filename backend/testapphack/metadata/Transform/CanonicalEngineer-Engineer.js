@@ -3,8 +3,9 @@ data = {
     source: 'CanonicalEngineer',
     target: 'Engineer',
     projection: {
+      id: engineer,
       name: name,
-      project: project
+      project: 'Test project',
     }
   };
   
