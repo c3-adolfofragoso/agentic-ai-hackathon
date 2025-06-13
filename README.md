@@ -1,5 +1,9 @@
 # Instructions for deploying app. 
 
+## Summary
+
+The Chipmunk app is a tool to help user manage their projects.
+
 ## Instalation prerequisites. 
 
 Install brew and npm (if not already done)
