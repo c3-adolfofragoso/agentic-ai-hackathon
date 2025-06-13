@@ -29,6 +29,9 @@ def _training(spec):
     ---
     
     The title and the description should be a single line string, no new lines or tabs.
+
+    Just return the tickets, no more thinking information or more sentences related.
+    Just the ticket information. Don't use unicode characters.
     """
 
     technologies_result = """
@@ -284,12 +287,12 @@ def featureExtractor(cls, spec):
     MODEL_NAME   = "/models/checkpoint-11871"
 
     GENERATION_ARGS = {
-        "temperature": 0.1,
+        "temperature": 0.4,
         "top_p": 0.95,
         "max_tokens": 2048,
         "extra_body": {
             # enable/disable thinking as-needed
-            "chat_template_kwargs": {"enable_thinking": True}
+            "chat_template_kwargs": {"enable_thinking": False}
         }
     }
 
@@ -301,7 +304,8 @@ def featureExtractor(cls, spec):
 
     resp = client.chat.completions.create(
         model=MODEL_NAME,
-        messages=_training(spec)         
+        messages=_training(spec),
+        **GENERATION_ARGS         
     )
 
     return resp.choices[0].message.content

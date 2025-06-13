@@ -4,5 +4,5 @@ type CleanTextHelper {
    * @param input - The input string to be cleaned.
    * @returns A JSON object containing the text.
    */
-  cleanTextToJson: function(input: string): json js-rhino
+  cleanTextToJson: function(input: string): [json] js-rhino
 }

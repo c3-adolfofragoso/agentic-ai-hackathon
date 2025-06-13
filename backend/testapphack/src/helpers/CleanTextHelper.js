@@ -1,13 +1,15 @@
 function cleanTextToJson(input) {
-  const preResults = input.replace(/\n/gi,'').split('---').slice(1);
+  var preResults = input.replace(/\n/gi,'').split('---').slice(1);
 
-  const results = preResults.map((text) => {
+  var results = preResults.map((text) => {
     // Regular expression to match the Title and Description
+    var match = false;
+
     try{
-      const regex = /\*\*Title\*\*:\s*(.*?)\s*\*\*Description\*\*:\s*(.*)/s;
-      var match = text.match(regex);
+      const regex = /Title:\s*(.*?)\s*Description:\s*(.*)/;;
+      match = text.match(regex);
     }catch(err){
-      match = null;
+      match = false;
     }
 
     // If the regex matches, extract the title and description
@@ -21,19 +23,24 @@ function cleanTextToJson(input) {
       };
     }
 
-    // If no match is found, try another regex
-    const regexAlt = /\*\*Title:\*\*\s*(.*?)\s*\*\*Description:\*\*\s*(.*)/s;
-    const matchAlt = text.match(regexAlt);
+    // // If no match is found, try another regex
+    // var matchAlt = false;
+    // try {
+    //   const regexAlt = /\*\*Title:\*\*\s*(.*?)\s*\*\*Description:\*\*\s*(.*)/s;
+    //   matchAlt = text.match(regexAlt);
+    // }catch(err){
+    //   matchAlt = false;
+    // }
 
-    if(matchAlt) {
-      const title = matchAlt[1].trim();
-      const description = matchAlt[2].trim();
+    // if(matchAlt) {
+    //   const title = matchAlt[1].trim();
+    //   const description = matchAlt[2].trim();
 
-      return {
-        title,
-        description
-      };
-    }
+    //   return {
+    //     title,
+    //     description
+    //   };
+    // }
     
 
     return null
