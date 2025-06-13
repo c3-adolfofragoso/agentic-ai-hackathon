@@ -350,6 +350,7 @@ def similarityScoreCalculator(cls, tickets):
     relations_to_upsert = []
     tickets_to_upsert = []
     idx = 0
+    project_id = uuid.uuid4()
     for kv in dev_scores:
         engineer = kv
         new_relations = dev_scores[kv] ## array
@@ -373,8 +374,16 @@ def similarityScoreCalculator(cls, tickets):
                     'id': ticket_id,
                     'name': relation[0]['title'],
                     'summary': relation[0]['description'],
+                    'project': c3.Project.make({
+                        'id': project_id,
+                    }),
                 })
             )
     c3.FeatureToEngineerRelation.upsertBatch(relations_to_upsert)
     c3.Ticket.upsertBatch(tickets_to_upsert)
-    return "success"
+    c3.Project.make({
+        'id': project_id,
+        'name': 'Project-'+ project_id,
+    }).upsert()
+
+    return 'Project-'+ project_id
