@@ -312,32 +312,69 @@ def _ticket_to_text(ticket):
 def similarityScoreCalculator(cls, tickets):
     from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics.pairwise import cosine_similarity
+    import numpy as np
+    import uuid
     
-    engineers = c3.Engineer.fetch({"include": 'historicalContributions.name'}).objs
+    vectorizer = TfidfVectorizer(stop_words='english')
+
+    engineers = c3.Engineer.fetch({"include": 'historicalContributions.name'}).objs.toJson()
     dev_scores = {}
     relationships = []
 
     for dev in engineers:
-        corpus_hist = [t.title for t in dev.historicalContributions]
-        corpus_nuevos = [t.title for t in tickets]
+        corpus_hist = [t['name'] for t in dev['historicalContributions']]
+        corpus_nuevos = [t['title'] for t in tickets]
+        
         full_corpus = corpus_hist + corpus_nuevos
 
         if not corpus_hist:
-            dev_scores[dev.nombre] = [(ticket, 0.0) for ticket in tickets]
+            dev_scores[dev['name']] = [(ticket, 0.0) for ticket in tickets]
             continue
-        vectorizer = TfidfVectorizer(stop_words='english')
+        
+        
         tfidf_matrix = vectorizer.fit_transform(full_corpus)
-
+        
         hist_matrix = tfidf_matrix[:len(corpus_hist)]
         nuevos_matrix = tfidf_matrix[len(corpus_hist):]
 
-        hist_avg = hist_matrix.mean(axis=0)
+        hist_avg = np.asarray(hist_matrix.mean(axis=0))
+        
         similarities = cosine_similarity(hist_avg, nuevos_matrix)[0]
 
         ticket_scores = list(zip(tickets, similarities.tolist()))
         ticket_scores.sort(key=lambda x: x[1], reverse=True)
 
-        dev_scores[dev.nombre] = ticket_scores
 
-    return dev_scores
+        dev_scores[dev['id']] = ticket_scores
 
+    relations_to_upsert = []
+    tickets_to_upsert = []
+    idx = 0
+    for kv in dev_scores:
+        engineer = kv
+        new_relations = dev_scores[kv] ## array
+        for relation in new_relations:
+            ticket_id = uuid.uuid4()
+            relations_to_upsert.append(
+                c3.FeatureToEngineerRelation.make({
+                    'from': c3.Ticket.make({
+                        'id': ticket_id,
+                        'name': relation[0]['title'],
+                        'summary': relation[0]['description'],
+                    }),
+                    'to': c3.Engineer.make({
+                        'id': engineer
+                    }),
+                    'similarityScore': relation[1]
+                })
+            )
+            tickets_to_upsert.append(
+                c3.Ticket.make({
+                    'id': ticket_id,
+                    'name': relation[0]['title'],
+                    'summary': relation[0]['description'],
+                })
+            )
+    c3.FeatureToEngineerRelation.upsertBatch(relations_to_upsert)
+    c3.Ticket.upsertBatch(tickets_to_upsert)
+    return "success"
