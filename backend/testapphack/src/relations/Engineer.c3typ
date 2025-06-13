@@ -1,4 +1,9 @@
 entity type Engineer {
+  name: string 
 
-  historicalContributions: [Ticket] (engineer);
+  project: string
+
+  email: string
+  
+  historicalContributions: [Ticket] (engineer)
 }

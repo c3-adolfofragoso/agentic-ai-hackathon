@@ -1,3 +1,9 @@
+/**
+This backend file will store ML model logic
+*/
 type Alvin {
-    
+
+  featureExtractor: function(spec: string): [Ticket];
+
+  similarityScoreCalculator: function(tickets: [Ticket]): json;
 }

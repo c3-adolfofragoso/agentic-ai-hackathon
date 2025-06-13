@@ -1,4 +1,4 @@
-type FeatureToEngineerRelation {
+entity type FeatureToEngineerRelation {
   
   from: Ticket;
 
