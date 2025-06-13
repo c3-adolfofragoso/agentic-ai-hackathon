@@ -17,6 +17,21 @@ function cleanTextToJson(input) {
       };
     }
 
+    // If no match is found, try another regex
+    const regexAlt = /\*\*Title:\*\*\s*(.*?)\s*\*\*Description:\*\*\s*(.*)/s;
+    const matchAlt = text.match(regexAlt);
+
+    if(matchAlt) {
+      const title = matchAlt[1].trim();
+      const description = matchAlt[2].trim();
+
+      return {
+        title,
+        description
+      };
+    }
+    
+
     return null
   }).filter(output => output != null);
 
