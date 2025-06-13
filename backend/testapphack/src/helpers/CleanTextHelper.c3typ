@@ -1,0 +1,8 @@
+type CleanTextHelper = {
+  /**
+   * Cleans the input text by removing unwanted characters and formatting it into a JSON object.
+   * @param input - The input string to be cleaned.
+   * @returns A JSON object containing the text.
+   */
+  function cleanTextToJson(input: string): json
+};

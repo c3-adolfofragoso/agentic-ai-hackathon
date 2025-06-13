@@ -3,3 +3,10 @@
 .venv/
 /backend/testapphack/gen
 .fingerprints.txt
+
+**/jsconfig.json
+.vs-cache
+**/.fingerprints.txt
+.vscode
+**/gen/cache/**
+.c3nbrc.js
