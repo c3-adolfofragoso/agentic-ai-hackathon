@@ -1,0 +1,1 @@
+{"type":"ImplLanguage.Runtime","name":"py-simon","languageVersion":"3.9","description":"Action runtime required for Inventory Optimization app.","repositories":["conda-forge","defaults"],"libraries":["conda openai","conda sentence-transformers<=2.2.2"],"parents":["py-data"]}

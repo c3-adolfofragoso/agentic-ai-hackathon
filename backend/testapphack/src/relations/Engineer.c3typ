@@ -1,0 +1,9 @@
+entity type Engineer {
+  name: string 
+
+  project: string
+
+  email: string
+  
+  historicalContributions: [Ticket] (engineer)
+}

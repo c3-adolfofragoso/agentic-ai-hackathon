@@ -1,0 +1,14 @@
+{
+    "type": "JupyterNotebook",
+    "uploadCompleted": true,
+    "name": "Embedding-Toolkit-Tutorial.ipynb",
+    "id": "Embedding-Toolkit/Embedding-Toolkit-Tutorial.ipynb",
+    "path": "Embedding-Toolkit/Embedding-Toolkit-Tutorial.ipynb",
+    "jupyterContentType": "notebook",
+    "format": "json",
+    "writable": false,
+    "externalFile": {
+        "type": "File",
+        "url": "meta://embeddingToolkit/notebooks/Embedding-Toolkit-Tutorial.ipynb"
+    }
+}

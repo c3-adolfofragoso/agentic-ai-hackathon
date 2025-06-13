@@ -1,0 +1,49 @@
+/*
+ * Copyright 2009-2024 C3 AI (www.c3.ai). All Rights Reserved.
+ * Confidential and Proprietary C3 Materials.
+ * This material, including without limitation any software, is the confidential trade secret and proprietary
+ * information of C3 and its licensors. Reproduction, use and/or distribution of this material in any form is
+ * strictly prohibited except as set forth in a written license agreement with C3 and/or its authorized distributors.
+ * This material may be covered by one or more patents or pending patent applications.
+ */
+
+/**
+ * This type creates an {@link MlAtomicPipe} that can extract
+ * BERT language model embeddings given a list of text.
+ */
+ type Embedding.Extraction.BertPipe extends Embedding.Extraction.Pipe type key 'EMBEBP' {
+
+  /**
+   * The name of the pre-trained language models to get the embeddings.
+   * Please refer to the pre-trained models here: https://huggingface.co/models?other=bert.
+   * Any BERT-based model or fine-tuned BERT model can be used with this embedding extraction pipe.
+   */
+  /*
+   * TODO ESG-3875: Create a validation check for the models used by the BERT pipe.
+   */
+  modelName: !string
+
+  /**
+   * Load pre-trained model and tokenizer.
+   */
+  doTrain: ~ py-embedding
+
+  /**
+   * Extract embeddings from large pre-trained BERT language models
+   * given the input as a list of text.
+   * The {@link MlPipeline} will use GPU resources if they are available at inference time.
+   * In the function, `this.setFeatureIndices` is used to set the subject feature as the index, which
+   * will be used by downstream pipes as well.
+   */
+  doProcess: ~ py-embedding
+
+  /**
+   * Save pre-trained model and tokenizer using predefined APIs.
+   */
+  saveModel: ~ py-embedding
+
+  /**
+   * Load pre-trained model and tokenizer using predefined APIs.
+   */
+  loadModel: ~ py-embedding
+}

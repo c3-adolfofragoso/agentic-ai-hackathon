@@ -1,0 +1,5 @@
+
+type CanonicalProject mixes Canonical<CanonicalProject> {
+  id: string
+  summary: string
+}

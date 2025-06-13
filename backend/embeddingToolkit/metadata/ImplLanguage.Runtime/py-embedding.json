@@ -1,0 +1,14 @@
+{
+  "name": "py-embedding",
+  "languageVersion": "3.9",
+  "repositories": [
+    "defaults",
+    "conda-forge"
+  ],
+  "libraries": [
+    "conda sentence-transformers<=2.2.2"
+  ],
+  "parents": [
+    "py-data"
+  ]
+}

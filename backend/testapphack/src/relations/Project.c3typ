@@ -1,0 +1,4 @@
+entity type Project {
+  name: string
+  tickets: [Ticket] (project);
+}
