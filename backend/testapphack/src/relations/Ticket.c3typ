@@ -1,4 +1,5 @@
 entity type Ticket {
+  summary: string;
 
   engineer: Engineer;
 
