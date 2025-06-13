@@ -383,7 +383,7 @@ def similarityScoreCalculator(cls, tickets):
     c3.Ticket.upsertBatch(tickets_to_upsert)
     c3.Project.make({
         'id': project_id,
-        'name': 'Project-'+ project_id,
+        'name': 'Project-'+ str(project_id),
     }).upsert()
 
-    return 'Project-'+ project_id
+    return 'Project-'+ str(project_id)
