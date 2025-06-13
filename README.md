@@ -48,4 +48,4 @@ Local: http://localhost:5173
 
 # Making contributions to the repo: 
 
-clone and commit your changes. Let's push everything to 'main' branch
+clone and commit your changes. Let's push everything to 'main' branch. Tesst
