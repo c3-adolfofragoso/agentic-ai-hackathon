@@ -3,7 +3,7 @@ This backend file will store ML model logic
 */
 type Alvin {
 
-  featureExtractor: function(spec: string): [Ticket];
+  featureExtractor: function(spec: string): string py-simon;
 
   similarityScoreCalculator: function(tickets: [Ticket]): json;
 }
