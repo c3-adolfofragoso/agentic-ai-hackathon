@@ -1,0 +1,4 @@
+{
+  "id": "embeddingToolkit",
+  "excludePaths": [".*/test/.*", ".*/metadata/.*", ".*/ui/.*", ".*/resource/.*"]
+}
